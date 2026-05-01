@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000/api',
+  apiUrl: 'https://agence-de-voyage-1-pplv.onrender.com/api',
 };
