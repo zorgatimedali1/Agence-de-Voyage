@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production",
-    "postbuild": "copyfiles _redirects dist/zorgati-voyage/",
+    "build": "ng build --configuration=production && cp _redirects dist/zorgati-voyage-frontend/browser/" ,
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
