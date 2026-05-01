@@ -396,7 +396,9 @@ export class VoyageListComponent implements OnInit {
       },
       error: (err) => {
         this.zone.run(() => {
-          this.loadError = err.error?.message || 'Impossible de charger les voyages. Vérifiez que le serveur est démarré.';
+          this.loadError = err.name === 'TimeoutError'
+            ? 'Le serveur se réveille, veuillez patienter 30 secondes et rafraîchir la page...'
+            : err.error?.message || 'Impossible de charger les voyages. Vérifiez que le serveur est démarré.';
           this.voyages = [];
           this.total = 0;
           this.loading = false;

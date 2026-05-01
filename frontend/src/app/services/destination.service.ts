@@ -24,7 +24,7 @@ export class DestinationService {
 
   private withTimeout<T>(obs: Observable<T>): Observable<T> {
     return obs.pipe(
-      timeout(8000),
+      timeout(60000),
       catchError(err => {
         console.error('[DestinationService] Request failed:', err.name, err.message, '→ URL:', this.apiUrl);
         return throwError(() => err);

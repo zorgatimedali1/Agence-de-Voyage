@@ -26,7 +26,7 @@ export class OrderService {
 
   private withTimeout<T>(obs: Observable<T>): Observable<T> {
     return obs.pipe(
-      timeout(10000),
+      timeout(60000),
       catchError(err => throwError(() => err))
     );
   }
