@@ -1,0 +1,6 @@
+# Angular build output
+/dist
+/dist/**
+
+# Netlify SPA redirects
+!/_redirects
