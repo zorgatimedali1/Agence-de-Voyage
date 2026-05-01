@@ -7,21 +7,9 @@
       "config": {
         "distDir": "dist/zorgati-voyage-frontend/browser"
       }
-    },
-    {
-      "src": "backend/app.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/app.js"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "backend/app.js"
-    },
     {
       "handle": "filesystem"
     },
