@@ -14,11 +14,13 @@ connectDB();
 
 const app = express();
 
+// FIX: Change 'origin' to your NETLIFY URL (the one where the website is)
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: ['https://your-netlify-site-name.netlify.app', 'http://localhost:4200'], 
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -46,10 +48,10 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 4000;
+// FIX: Listen on 0.0.0.0 for Render
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🌍 Serveur démarré sur le port ${PORT}`);
-  console.log(`📡 API disponible sur http://localhost:${PORT}/api`);
 });
 
 module.exports = app;
