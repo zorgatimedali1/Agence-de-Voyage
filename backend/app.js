@@ -16,7 +16,7 @@ const app = express();
 
 // FIX: Change 'origin' to your NETLIFY URL (the one where the website is)
 app.use(cors({
-  origin: ['https://your-netlify-site-name.netlify.app', 'http://localhost:4200'], 
+  origin: ['https://zorgati-voyage.netlify.app', 'http://localhost:4200'], 
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
