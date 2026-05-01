@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration=production && cp _redirects dist/zorgati-voyage-frontend/browser/" ,
+    "build": "ng build --configuration=production",
+    "vercel-build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
