@@ -1,0 +1,297 @@
+{
+  "info": {
+    "name": "Zorgati Voyage API",
+    "_postman_id": "zorgati-voyage-collection",
+    "description": "Collection de tests API pour le projet Zorgati Voyage — MEAN Stack — Polytech Monastir",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api" },
+    { "key": "dest_id",   "value": "" },
+    { "key": "voyage_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "🟢 Health Check",
+      "item": [
+        {
+          "name": "GET — Statut de l'API",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] },
+            "description": "Vérifier que le serveur et MongoDB Atlas sont opérationnels"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🌍 Destinations",
+      "item": [
+        {
+          "name": "GET — Toutes les destinations",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/destinations", "host": ["{{baseUrl}}"], "path": ["destinations"] }
+          }
+        },
+        {
+          "name": "GET — Recherche par nom (search)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/destinations?search=Djerba",
+              "host": ["{{baseUrl}}"],
+              "path": ["destinations"],
+              "query": [{ "key": "search", "value": "Djerba" }]
+            }
+          }
+        },
+        {
+          "name": "GET — Destination par ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/destinations/{{dest_id}}", "host": ["{{baseUrl}}"], "path": ["destinations", "{{dest_id}}"] }
+          }
+        },
+        {
+          "name": "POST — Créer une destination",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/destinations", "host": ["{{baseUrl}}"], "path": ["destinations"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "nom",          "value": "Rome",              "type": "text" },
+                { "key": "pays",         "value": "Italie",            "type": "text" },
+                { "key": "description",  "value": "La Ville Éternelle, berceau de la civilisation occidentale avec le Colisée, le Vatican et la Fontaine de Trevi.", "type": "text" },
+                { "key": "climat",       "value": "méditerranéen",     "type": "text" },
+                { "key": "langueLocale", "value": "Italien",           "type": "text" },
+                { "key": "monnaie",      "value": "Euro (€)",          "type": "text" }
+              ]
+            },
+            "description": "Créer une nouvelle destination. Copier l'_id retourné dans la variable dest_id"
+          }
+        },
+        {
+          "name": "PUT — Modifier une destination",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/destinations/{{dest_id}}", "host": ["{{baseUrl}}"], "path": ["destinations", "{{dest_id}}"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "description", "value": "Rome — La Ville Éternelle revisitée, capitale d'Italie et haut lieu du patrimoine mondial.", "type": "text" },
+                { "key": "monnaie",     "value": "Euro (€) — Zone euro",  "type": "text" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE — Supprimer une destination",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/destinations/{{dest_id}}", "host": ["{{baseUrl}}"], "path": ["destinations", "{{dest_id}}"] }
+          }
+        },
+        {
+          "name": "❌ ERREUR — ID inexistant (404)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/destinations/000000000000000000000000", "host": ["{{baseUrl}}"], "path": ["destinations", "000000000000000000000000"] },
+            "description": "Doit retourner : { success: false, message: 'Destination non trouvée' }"
+          }
+        },
+        {
+          "name": "❌ ERREUR — ID invalide (400)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/destinations/id-invalide", "host": ["{{baseUrl}}"], "path": ["destinations", "id-invalide"] },
+            "description": "Doit retourner : { success: false, message: 'ID invalide' }"
+          }
+        },
+        {
+          "name": "❌ ERREUR — Champ obligatoire manquant (400)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/destinations", "host": ["{{baseUrl}}"], "path": ["destinations"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "pays", "value": "Italie", "type": "text" }
+              ]
+            },
+            "description": "Nom manquant — Doit retourner une erreur de validation 400"
+          }
+        }
+      ]
+    },
+    {
+      "name": "✈ Voyages",
+      "item": [
+        {
+          "name": "GET — Tous les voyages",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/voyages", "host": ["{{baseUrl}}"], "path": ["voyages"] }
+          }
+        },
+        {
+          "name": "GET — Recherche par titre",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/voyages?search=Djerba",
+              "host": ["{{baseUrl}}"],
+              "path": ["voyages"],
+              "query": [{ "key": "search", "value": "Djerba" }]
+            }
+          }
+        },
+        {
+          "name": "GET — Filtrer par type",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/voyages?type=balnéaire",
+              "host": ["{{baseUrl}}"],
+              "path": ["voyages"],
+              "query": [{ "key": "type", "value": "balnéaire" }]
+            }
+          }
+        },
+        {
+          "name": "GET — Trier par prix croissant",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/voyages?sortBy=prix_asc",
+              "host": ["{{baseUrl}}"],
+              "path": ["voyages"],
+              "query": [{ "key": "sortBy", "value": "prix_asc" }]
+            }
+          }
+        },
+        {
+          "name": "GET — Trier par prix décroissant",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/voyages?sortBy=prix_desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["voyages"],
+              "query": [{ "key": "sortBy", "value": "prix_desc" }]
+            }
+          }
+        },
+        {
+          "name": "GET — Pagination (page 1, 5 par page)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/voyages?page=1&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["voyages"],
+              "query": [
+                { "key": "page",  "value": "1" },
+                { "key": "limit", "value": "5" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET — Voyage par ID (avec destination peuplée)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/voyages/{{voyage_id}}", "host": ["{{baseUrl}}"], "path": ["voyages", "{{voyage_id}}"] },
+            "description": "Retourne le voyage avec l'objet destination complet (populate)"
+          }
+        },
+        {
+          "name": "POST — Créer un voyage",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/voyages", "host": ["{{baseUrl}}"], "path": ["voyages"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "titre",             "value": "Découverte de Rome",     "type": "text" },
+                { "key": "destination",       "value": "{{dest_id}}",            "type": "text" },
+                { "key": "description",       "value": "5 jours de découverte de la Ville Éternelle entre Colisée, Vatican et gastronomie italienne.", "type": "text" },
+                { "key": "prix",              "value": "1450",                   "type": "text" },
+                { "key": "duree",             "value": "5",                      "type": "text" },
+                { "key": "dateDepart",        "value": "2025-08-01",             "type": "text" },
+                { "key": "dateRetour",        "value": "2025-08-06",             "type": "text" },
+                { "key": "placesDisponibles", "value": "20",                     "type": "text" },
+                { "key": "typeVoyage",        "value": "culturel",               "type": "text" }
+              ]
+            },
+            "description": "Copier l'_id retourné dans la variable voyage_id"
+          }
+        },
+        {
+          "name": "PUT — Modifier un voyage",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "{{baseUrl}}/voyages/{{voyage_id}}", "host": ["{{baseUrl}}"], "path": ["voyages", "{{voyage_id}}"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "prix",              "value": "1350", "type": "text" },
+                { "key": "placesDisponibles", "value": "18",   "type": "text" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "DELETE — Supprimer un voyage",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/voyages/{{voyage_id}}", "host": ["{{baseUrl}}"], "path": ["voyages", "{{voyage_id}}"] }
+          }
+        },
+        {
+          "name": "❌ ERREUR — Voyage non trouvé (404)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/voyages/000000000000000000000000", "host": ["{{baseUrl}}"], "path": ["voyages", "000000000000000000000000"] }
+          }
+        },
+        {
+          "name": "❌ ERREUR — Destination inexistante (404)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/voyages", "host": ["{{baseUrl}}"], "path": ["voyages"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "titre",             "value": "Test Voyage",  "type": "text" },
+                { "key": "destination",       "value": "000000000000000000000000", "type": "text" },
+                { "key": "prix",              "value": "500",          "type": "text" },
+                { "key": "duree",             "value": "3",            "type": "text" },
+                { "key": "dateDepart",        "value": "2025-09-01",   "type": "text" },
+                { "key": "dateRetour",        "value": "2025-09-04",   "type": "text" },
+                { "key": "placesDisponibles", "value": "10",           "type": "text" }
+              ]
+            },
+            "description": "Doit retourner : { success: false, message: 'Destination introuvable' }"
+          }
+        },
+        {
+          "name": "❌ ERREUR — Prix manquant (400)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/voyages", "host": ["{{baseUrl}}"], "path": ["voyages"] },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "titre",       "value": "Voyage sans prix", "type": "text" },
+                { "key": "destination", "value": "{{dest_id}}",      "type": "text" }
+              ]
+            },
+            "description": "Champs obligatoires manquants — erreur de validation 400"
+          }
+        }
+      ]
+    }
+  ]
+}
