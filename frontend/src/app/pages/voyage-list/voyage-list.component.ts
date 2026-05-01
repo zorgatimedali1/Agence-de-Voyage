@@ -442,7 +442,8 @@ export class VoyageListComponent implements OnInit {
   }
 
   getImageUrl(path: string): string {
-    if (path.startsWith('http')) return path;
+    if (!path) return '';
+    if (path.startsWith('data:') || path.startsWith('http')) return path;
     return `http://localhost:4000${path}`;
   }
 }

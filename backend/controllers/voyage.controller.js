@@ -82,7 +82,7 @@ exports.createVoyage = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Destination introuvable' });
     }
 
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+    const image = req.imageBase64 || null;
     const voyage = await Voyage.create({ ...req.body, image });
     const populated = await voyage.populate('destination', 'nom pays image');
 
@@ -100,8 +100,8 @@ exports.createVoyage = async (req, res) => {
 exports.updateVoyage = async (req, res) => {
   try {
     const updateData = { ...req.body };
-    if (req.file) {
-      updateData.image = `/uploads/${req.file.filename}`;
+    if (req.imageBase64) {
+      updateData.image = req.imageBase64;
     }
 
     // Vérifier destination si modifiée

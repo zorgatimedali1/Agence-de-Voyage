@@ -43,7 +43,7 @@ exports.getDestinationById = async (req, res) => {
 // POST /destinations — Créer une destination
 exports.createDestination = async (req, res) => {
   try {
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+    const image = req.imageBase64 || null;
     const destination = await Destination.create({ ...req.body, image });
     res.status(201).json({ success: true, message: 'Destination créée avec succès', data: destination });
   } catch (error) {
@@ -59,8 +59,8 @@ exports.createDestination = async (req, res) => {
 exports.updateDestination = async (req, res) => {
   try {
     const updateData = { ...req.body };
-    if (req.file) {
-      updateData.image = `/uploads/${req.file.filename}`;
+    if (req.imageBase64) {
+      updateData.image = req.imageBase64;
     }
 
     const destination = await Destination.findByIdAndUpdate(req.params.id, updateData, {

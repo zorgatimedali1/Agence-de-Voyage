@@ -294,7 +294,8 @@ export class VoyageFormComponent implements OnInit {
           v.inclus.forEach((item: string) => this.inclusArray.push(this.fb.control(item)));
         }
         if (v.image) {
-          this.imagePreview = `http://localhost:4000${v.image}`;
+          const img = v.image as string;
+          this.imagePreview = (img.startsWith('data:') || img.startsWith('http')) ? img : `http://localhost:4000${img}`;
         }
       },
     });

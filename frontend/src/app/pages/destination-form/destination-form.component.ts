@@ -186,7 +186,8 @@ export class DestinationFormComponent implements OnInit {
       next: (res) => {
         this.form.patchValue(res.data as any);
         if ((res.data as any).image) {
-          this.imagePreview = `http://localhost:4000${(res.data as any).image}`;
+          const img = (res.data as any).image as string;
+          this.imagePreview = (img.startsWith('data:') || img.startsWith('http')) ? img : `http://localhost:4000${img}`;
         }
       },
     });
