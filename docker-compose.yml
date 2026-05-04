@@ -13,9 +13,9 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4000
-      - MONGO_URI=${MONGO_URI}
-      - JWT_SECRET=${JWT_SECRET}
-      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+      - MONGO_URI=${MONGO_URI=mongodb+srv://adminVoyage:f9SKnCDLMTkGc4Zr@cluster0.qv1tocs.mongodb.net/agence_voyage?retryWrites=true&w=majority&appName=Cluster0}
+      - JWT_SECRET=${zorgati_voyage_super_secret_key_2026}
+      - JWT_EXPIRES_IN=${8h}
     volumes:
       - uploads_data:/app/uploads
     healthcheck:
