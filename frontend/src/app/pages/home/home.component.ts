@@ -51,7 +51,7 @@ import { Destination } from '../../models/destination.model';
         <p class="hero-tagline">Agence de Voyage Premium</p>
         <h1 class="hero-title">
           Découvrez le Monde<br>
-          <span class="hero-accent">Avec Zorgati</span>
+          <span class="hero-accent">Avec LWZ</span>
         </h1>
         <p class="hero-desc">Des expériences uniques, des destinations inoubliables. Laissez-nous créer le voyage de vos rêves.</p>
         <div class="hero-actions">

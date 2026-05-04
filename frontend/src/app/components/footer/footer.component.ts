@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       <div class="footer-container">
         <div class="footer-brand">
           <span class="footer-icon">✈</span>
-          <span class="footer-name">Zorgati <span class="footer-accent">Voyage</span></span>
+          <span class="footer-name">LWZ <span class="footer-accent">Voyage</span></span>
         </div>
         <p class="footer-text">
           Projet MEAN Stack — Polytechnique Sousse

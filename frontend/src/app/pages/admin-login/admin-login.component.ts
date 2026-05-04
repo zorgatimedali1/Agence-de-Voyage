@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
       <div class="login-card">
         <div class="login-header">
           <span class="login-icon">✈</span>
-          <h1>Zorgati <span class="accent">Voyage</span></h1>
+          <h1>LWZ <span class="accent">Voyage</span></h1>
           <p>Espace Administration</p>
         </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">

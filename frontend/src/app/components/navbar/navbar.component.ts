@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
       <div class="nav-container">
         <a routerLink="/" class="nav-brand">
           <span class="brand-icon">✈</span>
-          <span class="brand-name">Zorgati <span class="brand-accent">Voyage</span></span>
+          <span class="brand-name">LWZ <span class="brand-accent">Voyage</span></span>
         </a>
 
         <button class="nav-toggle" (click)="toggleMenu()" [class.active]="menuOpen">
