@@ -154,8 +154,8 @@ import { Destination } from '../../models/destination.model';
     </div>
   `,
   styles: [`
-    .page { background: #f8f6f0; min-height: 100vh; padding: 2rem 0; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .page { background: #f8f6f0; min-height: 100vh; padding: 2rem 0; overflow-x: hidden; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
     .back-bar { margin-bottom: 1.5rem; }
     .back-link { color: #c8a96e; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
     .loading { text-align: center; padding: 4rem; color: #888; }
@@ -166,7 +166,7 @@ import { Destination } from '../../models/destination.model';
     .hero-img { width: 100%; height: 100%; object-fit: cover; }
     .hero-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 6rem; color: rgba(200,169,110,0.2); }
     .type-badge { position: absolute; top: 16px; right: 16px; background: rgba(200,169,110,0.9); color: #0a1628; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
-    .detail-body { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
+    .detail-body { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; min-width: 0; }
     .detail-main { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
     .detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; gap: 1rem; }
     .detail-title { font-size: 1.6rem; font-family: 'Georgia', serif; color: #0a1628; margin: 0 0 0.4rem; }
@@ -190,7 +190,7 @@ import { Destination } from '../../models/destination.model';
     .btn-edit-main { background: #c8a96e; color: #0a1628; padding: 0.7rem 1.25rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.88rem; }
     .btn-back-main { background: #f5f3ee; color: #555; padding: 0.7rem 1.25rem; border-radius: 6px; text-decoration: none; font-size: 0.88rem; }
     /* Booking card */
-    .booking-card { background: #fff; border-radius: 12px; padding: 1.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 90px; }
+    .booking-card { background: #fff; border-radius: 12px; padding: 1.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 90px; max-width: 100%; overflow: hidden; }
     .booking-title { font-size: 1.1rem; font-family: 'Georgia', serif; color: #0a1628; margin: 0 0 0.25rem; }
     .booking-price { font-size: 1.4rem; font-weight: 700; color: #c8a96e; margin: 0 0 1.5rem; }
     .booking-price span { font-size: 0.8rem; color: #888; font-weight: 400; }
@@ -216,6 +216,10 @@ import { Destination } from '../../models/destination.model';
       .detail-body { grid-template-columns: 1fr; }
       .booking-card { position: static; }
       .info-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+      .booking-card { padding: 1.25rem; }
     }
   `],
 })
