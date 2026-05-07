@@ -194,10 +194,12 @@ import { Destination } from '../../models/destination.model';
     .booking-title { font-size: 1.1rem; font-family: 'Georgia', serif; color: #0a1628; margin: 0 0 0.25rem; }
     .booking-price { font-size: 1.4rem; font-weight: 700; color: #c8a96e; margin: 0 0 1.5rem; }
     .booking-price span { font-size: 0.8rem; color: #888; font-weight: 400; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; min-width: 0; }
+    .form-row .form-group { min-width: 0; }
+    .form-row .form-input { width: 100%; box-sizing: border-box; }
     .form-group { margin-bottom: 0.9rem; display: flex; flex-direction: column; gap: 0.3rem; }
     label { font-size: 0.8rem; font-weight: 600; color: #444; }
-    .form-input, .form-textarea { padding: 0.6rem 0.8rem; border: 1px solid #e0d8cc; border-radius: 6px; font-size: 0.88rem; outline: none; transition: border-color 0.2s; font-family: inherit; }
+    .form-input, .form-textarea { padding: 0.6rem 0.8rem; border: 1px solid #e0d8cc; border-radius: 6px; font-size: 0.88rem; outline: none; transition: border-color 0.2s; font-family: inherit; width: 100%; box-sizing: border-box; }
     .form-input:focus, .form-textarea:focus { border-color: #c8a96e; }
     .form-textarea { resize: vertical; }
     .err { font-size: 0.75rem; color: #e74c3c; }
